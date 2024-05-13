@@ -7,15 +7,11 @@ trigger:
   - main
 
 pool:
-  vmImage: windows-latest  # Especifica el agente Windows
+  vmImage: ubuntu-latest
 
 steps:
-- script: |
-      echo "##vso[task.setvariable variable=JAVA_HOME]C:\Users\matys\.jdks\corretto-11.0.18\bin"
-  displayName: 'Set JAVA_HOME'
-
-- task: Maven@3
-  inputs:
+  - task: Maven@3
+    inputs:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Xmx3072m'
       javaHomeOption: 'JDKVersion'
@@ -24,8 +20,7 @@ steps:
       goals: 'package'
       options: '-Dmaven.test.failure.ignore=true'
 
-- task: Maven@3
-  inputs:
+  - task: Maven@3
+    inputs:
       mavenPomFile: 'pom.xml'
       goals: 'clean verify "-Dtest=WikipediaRunner,YoutubeRunner"'
-
