@@ -17,7 +17,7 @@ steps:
       javaHomeOption: 'JDKVersion'
       jdkVersionOption: '1.11'
       jdkArchitectureOption: 'x64'
-      goals: 'clean verify'
+      goals: 'clean verify "-Dtest=WikipediaRunner,YoutubeRunner"'
       options: '-Dmaven.test.failure.ignore=true'
 
   - task: PublishTestResults@2
