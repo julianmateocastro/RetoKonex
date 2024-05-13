@@ -17,17 +17,10 @@ steps:
       javaHomeOption: 'JDKVersion'
       jdkVersionOption: '1.11'
       jdkArchitectureOption: 'x64'
-      goals: 'clean verify "-Dtest=WikipediaRunner,YoutubeRunner"'
+      goals: 'package'
       options: '-Dmaven.test.failure.ignore=true'
 
-  - task: PublishTestResults@2
+  - task: Maven@3
     inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '**/target/site/serenity/*.xml'
-      failTaskOnFailedTests: true
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: 'target/site/serenity'
-      artifactName: 'SerenityReports'
-      publishLocation: 'Container'
+      mavenPomFile: 'pom.xml'
+      goals: 'clean verify "-Dtest=WikipediaRunner,YoutubeRunner"'
