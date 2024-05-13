@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src\\test\\resources\\features\\TestWikipedia.feature",
         glue = "co.com.reto.stepdefinitions",
+        tags = "@smoke",
         snippets = CucumberOptions.SnippetType.CAMELCASE)
 public class WikipediaRunner {
 }

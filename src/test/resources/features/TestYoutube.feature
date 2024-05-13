@@ -1,4 +1,4 @@
-
+@smoke
 Feature: As a user I need to search for a song and complete de access form
 
   @SearchInYoutube

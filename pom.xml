@@ -13,6 +13,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <dependency>
@@ -58,7 +59,6 @@
             <artifactId>serenity-maven-plugin</artifactId>
             <version>4.1.0</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay-webdriver -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -71,6 +71,33 @@
             <artifactId>serenity-reports</artifactId>
             <version>4.1.0</version>
         </dependency>
-
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>4.1.0</version>
+                <executions>
+                    <execution>
+                        <id>check-feature-files</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>check-gherkin</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <tags>@smoke</tags>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
